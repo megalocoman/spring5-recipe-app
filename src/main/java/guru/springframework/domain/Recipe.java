@@ -1,6 +1,7 @@
 package guru.springframework.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -9,6 +10,7 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 5000)
     private String description;
     private Integer prepTime;
     private Integer cookTime;
@@ -20,7 +22,7 @@ public class Recipe {
     private Difficulty difficulty;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private Set<Ingredient> ingredient;
+    private Set<Ingredient> ingredient =new HashSet<>();
     @Lob
     private  Byte[] images;
    @OneToOne(cascade = CascadeType.ALL)
@@ -29,7 +31,7 @@ public class Recipe {
     @JoinTable(name = "recipe_category",
             joinColumns = @JoinColumn(name="recipe_id"),
             inverseJoinColumns = @JoinColumn(name="category_id"))
-   private Set<Category> categories;
+   private Set<Category> categories =new HashSet<>() ;
 
     public String getDescription() {
         return description;
