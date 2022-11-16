@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of recipe</title>
+</head>
+<body>
+
+<table>
+    <thead>
+        <tr>
+            <th>Recipe Name</th>
+            <th>Description</th>
+            <th>Prep Time</th>
+            <th>Cook Time</th>
+            <th>Ingredients</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:each="recipe: ${listRecipe}">
+        <td th:text="${recipe.getSource()}"/>
+        <td th:text="${recipe.description}"/>
+        <td th:text="${recipe.prepTime}"/>
+        <td th:text="${recipe.cookTime}"/>
+        <td>
+            <ul th:each=" ingredient : ${recipe.ingredient} ">
+                <li th:text ="${ingredient.description}"></li>
+                <li th:text ="${ingredient.amount}"></li>
+                <li th:text ="${ingredient.uom.uom}"></li>
+            </ul>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+
+
+</body>
+</html>

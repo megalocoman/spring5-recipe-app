@@ -33,7 +33,7 @@ public class Recipe {
             inverseJoinColumns = @JoinColumn(name="category_id"))
    private Set<Category> categories =new HashSet<>() ;
 
-    public String getDescription() {
+            public String getDescription() {
         return description;
     }
 

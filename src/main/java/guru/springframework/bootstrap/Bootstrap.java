@@ -49,7 +49,7 @@ public class Bootstrap implements CommandLineRunner {
         spicyGrilled.setCookTime(15);
         spicyGrilled.setServing(6);
         spicyGrilled.setUrl("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
-        spicyGrilled.setSource("simplyrecipes");
+        spicyGrilled.setSource("Spicy Grilled Chicken Tacos");
         spicyGrilled.setDifficulty(Difficulty.HARD);
         Ingredient ingUno = new Ingredient();
         ingUno.setDescription("ancho chili powder");
@@ -90,7 +90,7 @@ public class Bootstrap implements CommandLineRunner {
         perfectGuacamole.setPrepTime(10);
         perfectGuacamole.setCookTime(10);
         perfectGuacamole.setServing(4);
-        perfectGuacamole.setSource("simplyrecipes");
+        perfectGuacamole.setSource("Guacamole");
         perfectGuacamole.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
         perfectGuacamole.setDifficulty(Difficulty.HARD);
         perfectGuacamole.getIngredient().add(new Ingredient("ripe avocados", new BigDecimal(2), unit, perfectGuacamole));
