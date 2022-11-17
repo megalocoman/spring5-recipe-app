@@ -17,7 +17,7 @@ import java.util.Set;
 public class Bootstrap implements CommandLineRunner {
 
     private UnitOfMeasureRepository unitOfMeasureRepository;
-    private RecipeRepository recipeRepository;
+    private  RecipeRepository recipeRepository;
     private CategoryRepository categoryRepository;
 
     public Bootstrap(UnitOfMeasureRepository unitOfMeasureRepository, RecipeRepository recipeRepository,
@@ -55,24 +55,22 @@ public class Bootstrap implements CommandLineRunner {
         ingUno.setDescription("ancho chili powder");
         ingUno.setAmount(new BigDecimal(2));
         ingUno.setUom(tablespoon);
-        ingUno.setRecipe(spicyGrilled);
-        spicyGrilled.getIngredient().add(ingUno);
+        spicyGrilled.AddIngredient(ingUno);
         Ingredient ingDos = new Ingredient();
         ingDos.setDescription("dried oregano");
         ingDos.setAmount(new BigDecimal(1));
-        ingDos.setRecipe(spicyGrilled);
         ingDos.setUom(teaspoon);
-        spicyGrilled.getIngredient().add(ingDos);
-        spicyGrilled.getIngredient().add(new Ingredient("dried cumin", new BigDecimal(1), teaspoon, spicyGrilled));
-        spicyGrilled.getIngredient().add(new Ingredient("sugar", new BigDecimal(1), teaspoon, spicyGrilled));
-        spicyGrilled.getIngredient().add(new Ingredient("kosher salt", new BigDecimal("0.5"), teaspoon, spicyGrilled));
-        spicyGrilled.getIngredient().add(new Ingredient("clove garlic, finely chopped", new BigDecimal(1), unit, spicyGrilled));
+        spicyGrilled.AddIngredient(ingDos);
+        spicyGrilled.AddIngredient(new Ingredient("dried cumin", new BigDecimal(1), teaspoon));
+        spicyGrilled.AddIngredient(new Ingredient("sugar", new BigDecimal(1), teaspoon));
+        spicyGrilled.AddIngredient(new Ingredient("kosher salt", new BigDecimal("0.5"), teaspoon));
+        spicyGrilled.AddIngredient(new Ingredient("clove garlic, finely chopped", new BigDecimal(1), unit));
 
         Notes notesSpicy = new Notes();
         notesSpicy.setRecipeNotes("Look for ancho chile powder with the Mexican ingredients at your grocery store, on buy it" +
                 " online. (If you can't find ancho chili powder, you replace the ancho chili, the oregano, and the cumin" +
                 " with 2 1/2 tablespoons regular chili powder, though the flavor won't be quite the same.)");
-        notesSpicy.setRecipe(spicyGrilled);
+//        notesSpicy.setRecipe(spicyGrilled);
         spicyGrilled.setNotes(notesSpicy);
 
         spicyGrilled.getCategories().add(mexican);
@@ -93,19 +91,19 @@ public class Bootstrap implements CommandLineRunner {
         perfectGuacamole.setSource("Guacamole");
         perfectGuacamole.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
         perfectGuacamole.setDifficulty(Difficulty.HARD);
-        perfectGuacamole.getIngredient().add(new Ingredient("ripe avocados", new BigDecimal(2), unit, perfectGuacamole));
-        perfectGuacamole.getIngredient().add(new Ingredient("kosher salt", new BigDecimal("0.25"), teaspoon,perfectGuacamole));
-        perfectGuacamole.getIngredient().add(new Ingredient("fresh lime or lemon juice", new BigDecimal(1), tablespoon,perfectGuacamole));
-        perfectGuacamole.getIngredient().add(new Ingredient("minced red onion or thinly sliced green onion",
-                new BigDecimal(4), tablespoon,perfectGuacamole));
-        perfectGuacamole.getIngredient().add(new Ingredient("serrano (or jalapeño) chilis", new BigDecimal(2), unit,perfectGuacamole));
-        perfectGuacamole.getIngredient().add(new Ingredient("cilantro (leaves and tender stems), finely chopped", new BigDecimal(2),tablespoon,perfectGuacamole));
+        perfectGuacamole.AddIngredient(new Ingredient("ripe avocados", new BigDecimal(2), unit));
+        perfectGuacamole.AddIngredient(new Ingredient("kosher salt", new BigDecimal("0.25"), teaspoon));
+        perfectGuacamole.AddIngredient(new Ingredient("fresh lime or lemon juice", new BigDecimal(1), tablespoon));
+        perfectGuacamole.AddIngredient(new Ingredient("minced red onion or thinly sliced green onion",
+                new BigDecimal(4), tablespoon));
+        perfectGuacamole.AddIngredient(new Ingredient("serrano (or jalapeño) chilis", new BigDecimal(2), unit));
+        perfectGuacamole.AddIngredient(new Ingredient("cilantro (leaves and tender stems), finely chopped", new BigDecimal(2),tablespoon));
 
         Notes notesGuac = new Notes();
         notesGuac.setRecipeNotes("Be careful handling chilis! If using, it's best to wear food-safe gloves. If no " +
                 "gloves are available, wash your hands thoroughly after handling, and do not touch your eyes or the " +
                 "area near your eyes for several hours afterwards.");
-        notesGuac.setRecipe(perfectGuacamole);
+//        notesGuac.setRecipe(perfectGuacamole);
         perfectGuacamole.setNotes(notesGuac);
 
         recipeRepository.save(perfectGuacamole);
