@@ -4,6 +4,7 @@ import guru.springframework.domain.*;
 import guru.springframework.repository.CategoryRepository;
 import guru.springframework.repository.RecipeRepository;
 import guru.springframework.repository.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+@Slf4j
 @Component
 public class Bootstrap implements CommandLineRunner {
 
@@ -70,7 +72,6 @@ public class Bootstrap implements CommandLineRunner {
         notesSpicy.setRecipeNotes("Look for ancho chile powder with the Mexican ingredients at your grocery store, on buy it" +
                 " online. (If you can't find ancho chili powder, you replace the ancho chili, the oregano, and the cumin" +
                 " with 2 1/2 tablespoons regular chili powder, though the flavor won't be quite the same.)");
-//        notesSpicy.setRecipe(spicyGrilled);
         spicyGrilled.setNotes(notesSpicy);
 
         spicyGrilled.getCategories().add(mexican);
@@ -103,16 +104,17 @@ public class Bootstrap implements CommandLineRunner {
         notesGuac.setRecipeNotes("Be careful handling chilis! If using, it's best to wear food-safe gloves. If no " +
                 "gloves are available, wash your hands thoroughly after handling, and do not touch your eyes or the " +
                 "area near your eyes for several hours afterwards.");
-//        notesGuac.setRecipe(perfectGuacamole);
         perfectGuacamole.setNotes(notesGuac);
 
         recipeRepository.save(perfectGuacamole);
+
+        log.info("bootstrap data loaded successfully");
 
     }
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("loading bootstrap data");
+        log.info("loading bootstrap data");
         loadBootstrap();
     }
 }

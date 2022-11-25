@@ -7,6 +7,7 @@ import guru.springframework.repository.CategoryRepository;
 import guru.springframework.repository.RecipeRepository;
 import guru.springframework.repository.UnitOfMeasureRepository;
 import guru.springframework.service.RecipeServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import java.util.Set;
 /**
  * Created by jt on 6/1/17.
  */
+@Slf4j
 @Controller
 public class IndexController {
 
@@ -36,8 +38,9 @@ public class IndexController {
         Optional<Category> categoryOptional = categoryRepository.findByDescription("Mexican");
         Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByUom("Cup");
 
-        System.out.println("id de mexican es: " +  categoryOptional.get().getId());
-        System.out.println("id de Cup es: "+ unitOfMeasureOptional.get().getId());
+        log.info("id de mexican es: " +  categoryOptional.get().getId());
+        log.info("id de Cup es: "+ unitOfMeasureOptional.get().getId());
+
         return "index";
     }
 
