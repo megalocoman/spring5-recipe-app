@@ -41,6 +41,14 @@ jobs:
       # run tests!
       - run: mvn integration-test
 
+      - run:
+          name: Build
+          command: mvn -B -DskipTests clean package
+      # Then run your tests!
+      - run:
+          name: Test
+          command: mvn test
+
       - store_test_results:
           path: target/surefire-reports
 
