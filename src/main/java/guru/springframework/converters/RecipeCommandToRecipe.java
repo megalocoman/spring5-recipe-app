@@ -2,8 +2,12 @@ package guru.springframework.converters;
 
 import guru.springframework.command.RecipeCommand;
 import guru.springframework.domain.Recipe;
+import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
 
     private final NotesCommandToNotes notesCommandToNotes;
@@ -17,6 +21,8 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
         this.categoryConverter = categoryConverter;
     }
 
+    @Synchronized
+    @Nullable
     @Override
     public Recipe convert(RecipeCommand source) {
 
@@ -30,6 +36,7 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
             recipe.setSource(source.getSource());
             recipe.setUrl(source.getUrl());
             recipe.setDirection(source.getDirection());
+            recipe.setDifficulty(source.getDifficulty());
             recipe.setNotes(notesCommandToNotes.convert(source.getNotes()));
 
             if(source.getCategories() != null && source.getCategories().size()>0 ){
