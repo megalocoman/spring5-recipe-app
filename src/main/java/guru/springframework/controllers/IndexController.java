@@ -28,21 +28,8 @@ public class IndexController {
 
     public IndexController(
                            RecipeServiceImpl recipeServiceImpl) {
-//        this.categoryRepository = categoryRepository;
-//        this.unitOfMeasureRepository = unitOfMeasureRepository;
         this.recipeServiceImpl = recipeServiceImpl;
     }
-
-//    @RequestMapping({"", "/", "/index"})
-//    public String getIndexPage(){
-//        Optional<Category> categoryOptional = categoryRepository.findByDescription("Mexican");
-//        Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByUom("Cup");
-//
-//        log.info("id de mexican es: " +  categoryOptional.get().getId());
-//        log.info("id de Cup es: "+ unitOfMeasureOptional.get().getId());
-//
-//        return "index";
-//    }
 
     @RequestMapping({"/recipeList"})
     public String getListRecipe(Model model){

@@ -106,6 +106,8 @@ public class Bootstrap implements CommandLineRunner {
                 "area near your eyes for several hours afterwards.");
         perfectGuacamole.setNotes(notesGuac);
 
+        perfectGuacamole.getCategories().add(mexican);
+
         recipeRepository.save(perfectGuacamole);
 
         log.info("bootstrap data loaded successfully");

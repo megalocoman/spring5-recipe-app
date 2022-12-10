@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Retail</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+
+        th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
+
+  <script src="/webjars/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+
+          th:href="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 30px">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel-group">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h2 class="panel-title" th:text="${recipe.source}">Recipe Details</h2>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-3">
+                <p>Caterories: </p>
+              </div>
+              <div class="col-md-9">
+                <ul th:each="categorie: ${recipe.categories}">
+                  <li th:text="${categorie.description}">coreana</li>
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <p>Prep Time</p>
+              </div>
+              <div class="col-md-3">
+                <p th:text="${(recipe.prepTime) +' mins' }"> 30 mins</p>
+              </div>
+              <div class="col-md-3">
+                <p> Difficulty </p>
+              </div>
+              <div class="col-md-3">
+                <p th:text="${recipe.difficulty}">Easy</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <p>cooktime</p>
+              </div>
+              <div class="col-md-3">
+                <p th:text="${(recipe.cookTime)  + ' mins'}">30 min</p>
+              </div>
+              <div class="col-md-3">
+                <p>Servings:</p>
+              </div>
+              <div class="col-md-3">
+                <p th:text="${recipe.serving}"> 2</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <p>source: </p>
+              </div>
+              <div class="col-md-3">
+                <p th:text="${recipe.url}">30 mins</p>
+
+              </div>
+              <div class="col-md-3">
+                <p>URL:</p>
+              </div>
+              <div class="col-md-3">
+                <p th:text="${recipe.url}">www.receta.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h2 class="panel-title" >Ingredients</h2>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12">
+                <ul th:each="ingredient: ${recipe.ingredient}">
+                  <li th:text="${(ingredient.amount < 1? ingredient.amount :  (#numbers.formatInteger(ingredient.amount, 0 )))
+                  +' ' +(ingredient.uom.uom) + ' of '+(ingredient.description)}" >2 Cups of milk </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h2 class="panel-title" >Directions</h2>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12">
+                <p th:text="${recipe.direction}"></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h2 class="panel-title" >Notes</h2>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12">
+                <p th:text="${recipe.notes.recipeNotes}">muchas notas!!!</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

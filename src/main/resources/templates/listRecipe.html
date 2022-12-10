@@ -26,28 +26,19 @@
                         <table class="table table-hover">
                             <thead class="thead-inverse">
                             <tr>
+                                <th>number recipe</th>
                                 <th>Recipe Name</th>
-                                <th>Description</th>
-                                <th>Prep Time</th>
-                                <th>Cook Time</th>
-                                <th>Ingredients</th>
+                                <th>view recipe</th>
+
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="recipe: ${listRecipe}">
+                                <td th:text="${recipe.getId()}"/>
                                 <td th:text="${recipe.getSource()}"/>
-                                <td th:text="${recipe.description}"/>
-                                <td th:text="${recipe.prepTime}"/>
-                                <td th:text="${recipe.cookTime}"/>
-                                <td>
-                                    <ul th:each=" ingredient : ${recipe.ingredient} ">
-                                        <li th:text ="${ingredient.description}"></li>
-                                        <li th:text ="${ingredient.amount}"></li>
-                                        <li th:text ="${ingredient.uom.uom}"></li>
-                                    </ul>
-                                </td>
-                            </tr>
+                                <td><a href="#" th:href="@{'/recipe/show/'+${recipe.getId()}}">view</a></td>
 
+                            </tr>
                             </tbody>
                         </table>
 
