@@ -1,10 +1,13 @@
 package guru.springframework.controllers;
 
+import guru.springframework.command.RecipeCommand;
 import guru.springframework.service.RecipeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
@@ -25,6 +28,22 @@ public class RecipeController {
 
         return "recipeDetail";
     }
+
+    @RequestMapping("/new")
+    public String newRecipe(Model model){
+
+        model.addAttribute("recipe", new RecipeCommand());
+        return "recipeForm";
+    }
+
+    @PostMapping
+    @RequestMapping("")
+    public String saveOrUpdate(@ModelAttribute RecipeCommand command){
+        RecipeCommand recipeCommand = recipeService.saveRecipeCommand(command);
+        return "redirect:/recipe/show/" + recipeCommand.getId();
+    }
+
+
 
 
 }
