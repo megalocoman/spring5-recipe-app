@@ -26,32 +26,35 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
     @Override
     public Recipe convert(RecipeCommand source) {
 
-        if(source != null){
-            Recipe recipe= new Recipe();
-            recipe.setId(source.getId());
-            recipe.setDescription(source.getDescription());
-            recipe.setPrepTime(source.getPrepTime());
-            recipe.setCookTime(source.getCookTime());
-            recipe.setServing(source.getServing());
-            recipe.setSource(source.getSource());
-            recipe.setUrl(source.getUrl());
-            recipe.setDirection(source.getDirection());
-            recipe.setDifficulty(source.getDifficulty());
-            recipe.setNotes(notesCommandToNotes.convert(source.getNotes()));
-
-            if(source.getCategories() != null && source.getCategories().size()>0 ){
-                source.getCategories()
-                        .forEach(category -> recipe.getCategories().add(categoryCoverter.convert(category)));
-            }
-
-            if(source.getIngredient() != null && source.getIngredient().size() > 0){
-                source.getIngredient()
-                        .forEach(ingredient -> recipe.getIngredient().add(categoryConverter.convert(ingredient)));
-            }
-
-            return recipe;
+        if(source == null){
+            return null;
         }
 
-        return null;
+
+        final Recipe recipe= new Recipe();
+        recipe.setId(source.getId());
+        recipe.setDescription(source.getDescription());
+        recipe.setPrepTime(source.getPrepTime());
+        recipe.setCookTime(source.getCookTime());
+        recipe.setServing(source.getServing());
+        recipe.setSource(source.getSource());
+        recipe.setUrl(source.getUrl());
+        recipe.setDirection(source.getDirection());
+        recipe.setDifficulty(source.getDifficulty());
+        recipe.setNotes(notesCommandToNotes.convert(source.getNotes()));
+
+        if(source.getCategories() != null && source.getCategories().size()>0 ){
+            source.getCategories()
+                    .forEach(category -> recipe.getCategories().add(categoryCoverter.convert(category)));
+        }
+
+        if(source.getIngredient() != null && source.getIngredient().size() > 0){
+            source.getIngredient()
+                    .forEach(ingredient -> recipe.getIngredient().add(categoryConverter.convert(ingredient)));
+        }
+
+        return recipe;
+
+
     }
 }

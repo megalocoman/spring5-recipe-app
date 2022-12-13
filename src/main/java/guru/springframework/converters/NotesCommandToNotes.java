@@ -16,11 +16,13 @@ public class NotesCommandToNotes implements Converter<NotesCommand, Notes> {
     public Notes convert(NotesCommand source) {
 
         if(source != null){
-            Notes notes = new Notes();
+             final Notes notes = new Notes();
             notes.setId(source.getId());
             notes.setRecipeNotes(source.getRecipeNotes());
             return notes;
+        }else{
+            return null;
         }
-        return null;
+
     }
 }
